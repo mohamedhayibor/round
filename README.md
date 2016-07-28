@@ -1,28 +1,41 @@
 # round ![](https://travis-ci.org/mohamedhayibor/round.svg?branch=master)
 
-This crate provides utilities to round your floats with precision from 1 to 10.
+This crate provides utilities to (round, round_up, round_down) your floats with precision from 1 to 10.
 
 ## Usage
 
 In your project's Cargo.toml include the package name and version, like so:
 ```rust
 [dependencies]
-round = "0.1.0" // or any latest version
+round = "0.2.0" // or any latest version on crates.io
 ```
 
-#### example
+#### examples
 ```rust
 extern crate round;
-use round::round;
+use round::{round, round_up, round_down};
 
 fn main() {
+    // basic rounding
     let test_n = round(8.9534, 2);  // 8.95
     let test_x = round(8.9536, 3);  // 8.954
     let test_y = round(8.9536, -1); // 8.95
+
+    // rounding up
+    let test_j = round_up(8.9534, 2); // 8.96
+    let test_k = round_up(8.9536, 3); // 8.954
+
+    // rounding down
+    let test_l = round_down(8.9534, 2); // 8.95
+    let test_m = round_down(8.9536, 3); // 8.953
 }
 ```
 
-> defaults to 2 decimal rounding if your rounding (i32) is negative or greater than 10.
+> defaults to 2 decimal rounding (round, round_up, round_down) if your chosen number of decimals (i32) is negative or greater than 10.
+
+## API
+
+> round, roud_up, round_down from 0 to 10 precision
 
 ## Raison d'etre
 
