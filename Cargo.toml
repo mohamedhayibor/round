@@ -9,6 +9,6 @@ description = "This crate provides utilities to round your floats with precision
 documentation = "https://github.com/mohamedhayibor/round"
 repository = "https://github.com/mohamedhayibor/round"
 
-license = "GNU"
+license = "GPL-2.0"
 keywords = ["round", "rounding", "precision", "decimals", "floats"]
 
