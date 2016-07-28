@@ -1,4 +1,4 @@
-# round ![](https://travis-ci.org/mohamedhayibor/round.svg?branch=master)
+# round ![](https://travis-ci.org/mohamedhayibor/round.svg?branch=master) [![crates.io](https://img.shields.io/crates/v/round.svg)](https://crates.io/crates/round)
 
 This crate provides utilities to (round, round_up, round_down) your floats with precision from 1 to 10.
 
