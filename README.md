@@ -7,7 +7,7 @@ This crate provides utilities to (round, round_up, round_down) your floats with 
 In your project's Cargo.toml include the package name and version, like so:
 ```rust
 [dependencies]
-round = "0.2.0" // or any latest version on crates.io
+round = "0.1.0" // or any latest version on crates.io
 ```
 
 #### examples

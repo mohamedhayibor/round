@@ -1,6 +1,6 @@
 [package]
 name = "round"
-version = "0.0.0"
+version = "0.1.0"
 authors = ["Mohamed Hayibor <mohamedhayibor@gmail.com>"]
 
 publish = true
