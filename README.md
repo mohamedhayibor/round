@@ -1,5 +1,4 @@
-round
--------------
+# round ![](https://travis-ci.org/mohamedhayibor/round.svg?branch=master)
 
 This crate provides utilities to round your floats with precision from 1 to 10.
 
