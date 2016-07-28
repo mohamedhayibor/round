@@ -1,0 +1,14 @@
+[package]
+name = "round"
+version = "0.0.0"
+authors = ["Mohamed Hayibor <mohamedhayibor@gmail.com>"]
+
+publish = true
+description = "This crate provides utilities to round your floats with precision from 1 to 10."
+
+documentation = "https://github.com/mohamedhayibor/round"
+repository = "https://github.com/mohamedhayibor/round"
+
+license = "GNU"
+keywords = ["round", "rounding", "precision", "decimals", "floats"]
+
