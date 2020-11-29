@@ -3,19 +3,9 @@
 // Mohamed Hayibor - Copyright 2016
 
 pub fn round(number: f64, rounding: i32) -> f64 {
-    match rounding {
-        1        => (number * 10.).round() / 10.,
-        2        => (number * 100.).round() / 100.,
-        3        => (number * 1000.).round() / 1000.,
-        4        => (number * 10000.).round() / 10000.,
-        5        => (number * 100000.).round() / 100000.,
-        6        => (number * 1000000.).round() / 1000000.,
-        7        => (number * 10000000.).round() / 10000000.,
-        8        => (number * 100000000.).round() / 100000000.,
-        9        => (number * 1000000000.).round() / 1000000000.,
-        10       => (number * 10000000000.).round() / 10000000000.,
-        _        => (number * 100.).round() / 100.,
-    }
+    let round = 10.0_f64.powi(rounding);
+    let rounded_number = (number * round).round() / round;
+    rounded_number
 }
 
 #[test]
