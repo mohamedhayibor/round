@@ -4,6 +4,7 @@
 
 pub fn round(number: f64, rounding: i32) -> f64 {
     match rounding {
+        0        => number.round(),
         1        => (number * 10.).round() / 10.,
         2        => (number * 100.).round() / 100.,
         3        => (number * 1000.).round() / 1000.,
@@ -16,6 +17,12 @@ pub fn round(number: f64, rounding: i32) -> f64 {
         10       => (number * 10000000000.).round() / 10000000000.,
         _        => (number * 100.).round() / 100.,
     }
+}
+
+#[test]
+fn test_round_by0() {
+    let test_n = round(8.9534, 0);
+    assert_eq!(test_n, 9.0);
 }
 
 #[test]
