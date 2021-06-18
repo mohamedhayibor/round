@@ -3,104 +3,67 @@
 // Mohamed Hayibor - Copyright 2016
 
 pub fn round(number: f64, rounding: i32) -> f64 {
-    match rounding {
-        1        => (number * 10.).round() / 10.,
-        2        => (number * 100.).round() / 100.,
-        3        => (number * 1000.).round() / 1000.,
-        4        => (number * 10000.).round() / 10000.,
-        5        => (number * 100000.).round() / 100000.,
-        6        => (number * 1000000.).round() / 1000000.,
-        7        => (number * 10000000.).round() / 10000000.,
-        8        => (number * 100000000.).round() / 100000000.,
-        9        => (number * 1000000000.).round() / 1000000000.,
-        10       => (number * 10000000000.).round() / 10000000000.,
-        _        => (number * 100.).round() / 100.,
-    }
-}
-
-#[test]
-fn test_round_by2() {
-    let test_n = round(8.9534, 2);
-    assert_eq!(test_n, 8.95);
-}
-
-#[test]
-fn test_round_by3() {
-    let test_n = round(8.9536, 3);
-    assert_eq!(test_n, 8.954);
-}
-
-#[test]
-fn test_default_rounding() {
-    let test_n = round(8.9536, -1);
-    assert_eq!(test_n, 8.95);
+  let scale: f64 = 10_f64.powi(rounding);
+  (number * scale).round() / scale
 }
 
 // implementing round_up and round_down with same design pattern
 pub fn round_up(number: f64, rounding: i32) -> f64 {
-    match rounding {
-        1        => (number * 10.).ceil() / 10.,
-        2        => (number * 100.).ceil() / 100.,
-        3        => (number * 1000.).ceil() / 1000.,
-        4        => (number * 10000.).ceil() / 10000.,
-        5        => (number * 100000.).ceil() / 100000.,
-        6        => (number * 1000000.).ceil() / 1000000.,
-        7        => (number * 10000000.).ceil() / 10000000.,
-        8        => (number * 100000000.).ceil() / 100000000.,
-        9        => (number * 1000000000.).ceil() / 1000000000.,
-        10       => (number * 10000000000.).ceil() / 10000000000.,
-        _        => (number * 100.).ceil() / 100.,
-    }
-}
-
-#[test]
-fn test_round_up_by2() {
-    let test_n = round_up(8.9534, 2);
-    assert_eq!(test_n, 8.96);
-}
-
-#[test]
-fn test_round_up_by3() {
-    let test_n = round_up(8.9536, 3);
-    assert_eq!(test_n, 8.954);
-}
-
-#[test]
-fn test_default_round_up() {
-    let test_n = round_up(8.9536, -1);
-    assert_eq!(test_n, 8.96);
+  let scale: f64 = 10_f64.powi(rounding);
+  (number * scale).ceil() / scale
 }
 
 pub fn round_down(number: f64, rounding: i32) -> f64 {
-    match rounding {
-        1        => (number * 10.).floor() / 10.,
-        2        => (number * 100.).floor() / 100.,
-        3        => (number * 1000.).floor() / 1000.,
-        4        => (number * 10000.).floor() / 10000.,
-        5        => (number * 100000.).floor() / 100000.,
-        6        => (number * 1000000.).floor() / 1000000.,
-        7        => (number * 10000000.).floor() / 10000000.,
-        8        => (number * 100000000.).floor() / 100000000.,
-        9        => (number * 1000000000.).floor() / 1000000000.,
-        10       => (number * 10000000000.).floor() / 10000000000.,
-        _        => (number * 100.).floor() / 100.,
-    }
+  let scale: f64 = 10_f64.powi(rounding);
+  (number * scale).floor() / scale
 }
 
-#[test]
-fn test_round_down_by2() {
-    let test_n = round_down(8.9534, 2);
-    assert_eq!(test_n, 8.95);
-}
+#[cfg(test)]
+mod tests {
+  use super::*;
+  
+  #[test]
+  fn test_round() {
+    let pi: f64 = std::f64::consts::PI;
 
-#[test]
-fn test_round_down_by3() {
-    let test_n = round_down(8.9536, 3);
-    assert_eq!(test_n, 8.953);
-}
+    assert_eq!(round(pi, 0), 3.0);
+    assert_eq!(round(pi, 1), 3.1);
+    assert_eq!(round(pi, 2), 3.14);
+    assert_eq!(round(pi, 3), 3.142);
+    assert_eq!(round(pi, 4), 3.1416);
+    assert_eq!(round(pi, 5), 3.14159);
+    assert_eq!(round(pi, 6), 3.141593);
+    assert_eq!(round(pi, 7), 3.1415927);
+    assert_eq!(round(pi, 8), 3.14159265);
+  }
 
-#[test]
-fn test_default_round_down() {
-    let test_n = round_down(8.9536, -1);
-    assert_eq!(test_n, 8.95);
+  #[test]
+  fn test_round_down() {
+    let pi: f64 = std::f64::consts::PI;
+
+    assert_eq!(round_down(pi, 0), 3.0);
+    assert_eq!(round_down(pi, 1), 3.1);
+    assert_eq!(round_down(pi, 2), 3.14);
+    assert_eq!(round_down(pi, 3), 3.141);
+    assert_eq!(round_down(pi, 4), 3.1415);
+    assert_eq!(round_down(pi, 5), 3.14159);
+    assert_eq!(round_down(pi, 6), 3.141592);
+    assert_eq!(round_down(pi, 7), 3.1415926);
+    assert_eq!(round_down(pi, 8), 3.14159265);
+  }
+
+  #[test]
+  fn test_round_up() {
+    let pi: f64 = std::f64::consts::PI;
+    
+    assert_eq!(round_up(pi, 0), 4.0);
+    assert_eq!(round_up(pi, 1), 3.2);
+    assert_eq!(round_up(pi, 2), 3.15);
+    assert_eq!(round_up(pi, 3), 3.142);
+    assert_eq!(round_up(pi, 4), 3.1416);
+    assert_eq!(round_up(pi, 5), 3.14160);
+    assert_eq!(round_up(pi, 6), 3.141593);
+    assert_eq!(round_up(pi, 7), 3.1415927);
+    assert_eq!(round_up(pi, 8), 3.14159266);
+  }
 }
